@@ -1,0 +1,19 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "conf.js",
+  "dependencies": {
+    "chai": "^4.1.0",
+    "chai-as-promised": "^7.1.1",
+    "cucumber": "^2.3.1",
+    "protractor": "^5.1.2",
+    "protractor-cucumber-framework": "^3.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "protractor test/e2e/protractor-conf.js "
+  },
+  "author": "",
+  "license": "ISC"
+}
