@@ -8,5 +8,5 @@ defineSupportCode(function({setWorldConstructor}) {
 })
 
 defineSupportCode(function({setDefaultTimeout}) {
-  setDefaultTimeout(60 * 1000);
+  setDefaultTimeout(30 * 1000);
 });
