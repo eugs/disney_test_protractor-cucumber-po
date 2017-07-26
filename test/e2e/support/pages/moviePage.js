@@ -14,6 +14,4 @@ MoviePage.prototype.getMovieTitle = function () {
   return browser.$('#title-container h1').getText();
 };
 
-
-// module.exports = new MoviePage();
 module.exports = MoviePage;

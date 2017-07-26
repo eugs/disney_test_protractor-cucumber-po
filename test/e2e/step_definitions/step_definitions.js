@@ -9,7 +9,6 @@ var protractor = require('protractor');
 var EC = protractor.ExpectedConditions;
 
 var currentPage;
-// var movie_page = require('../support/pages/MoviePage.js');
 var pageFactory = require('../support/pages/pageFactory.js');
 var movie_page = pageFactory.getPage('movie');
 
@@ -26,29 +25,32 @@ defineSupportCode(function({Given, When, Then}) {
       });
   });
 
-  When(/^I click "([^"]*)"$/, function(buttonName) {
-    // var button = this.browser.element(by.cssContainingText('.menu-link.menu-uppercase', buttonName))
-    console.log("CLICK");
-    var button = browser.$('#search');
-    browser.wait(EC.elementToBeClickable(button), 5000).then(()=> {
-      return button.click();
-    });
-  });
+  // When(/^I click "([^"]*)"$/, function(buttonName) {
+  //   // var button = this.browser.element(by.cssContainingText('.menu-link.menu-uppercase', buttonName))
+  //   // console.log("CLICK");
+  //   // var button = browser.$('#search');
+  //   // browser.wait(EC.elementToBeClickable(button), 5000).then(()=> {
+  //   //   return button.click();
+  //   // });
+  // });
 
   When(/^I search "([^"]*)"$/, function(query) {
-    console.log("searc");
+    pageFactory.getPage('movie');
+    pageFactory.currentPage.header.search(query)
 
-    var button = browser.$('#search');
-    browser.wait(EC.elementToBeClickable(button), 5000)
-      .then(()=> {
-      button.click();
-      })
-      .then(()=> {
-        var field = browser.$('#q');
-        browser.wait(EC.visibilityOf(field), 5000).then(()=> {
-          return field.sendKeys(query);
-        });
-      })
+    // console.log("searc");
+    //
+    // var button = browser.$('#search');
+    // browser.wait(EC.elementToBeClickable(button), 5000)
+    //   .then(()=> {
+    //   button.click();
+    //   })
+    //   .then(()=> {
+    //     var field = browser.$('#q');
+    //     browser.wait(EC.visibilityOf(field), 5000).then(()=> {
+    //       return field.sendKeys(query);
+    //     });
+    //   })
   });
 
   Then(/^I should see the results$/, function() {
@@ -56,21 +58,25 @@ defineSupportCode(function({Given, When, Then}) {
     return browser.$('.row.padded-container.movielist a').click();
   });
 
-  Then(/^I should see the page of the movie "([^"]*)"$/, function(expTitle) {
+  Then(/^I should see the page of the movie "([^"]*)"$/, function(expectedTitle) {
       // return browser.$('#title-container h1').getText()
       //   .then(function (text) {
       //     expect(text).to.equal(title);
       //   });
-    var actualTitle = currentPage.getMovieTitle().then((title)=> {
-          console.log("get title: ", title);
-          expect(title).to.equal(expTitle);
-        });
+
+    pageFactory.getPage('movie');
+
+    pageFactory.currentPage.getMovieTitle().then((title)=> {
+      console.log("get title: ", title);
+      expect(title).to.equal(expectedTitle);
+    });
   });
 
   When(/^I click the preview button$/, function() {
     console.log("preview ");
-    currentPage = movie_page;
-    currentPage.clickPreview();
+    // currentPage = movie_page;
+    pageFactory.getPage('movie');
+    pageFactory.currentPage.clickPreview();
     // return browser.$('a[href="#preview"]').click();
   });
 
@@ -94,25 +100,5 @@ defineSupportCode(function({Given, When, Then}) {
     currentPage.sayHello();
     return browser.sleep(secs * 1000);
   });
-
-
-// #q
-// .results.ng-binding
-// .row.padded-container.movielist
-// a - list
-// #title-container h1
-// a[href="#preview"]
-
-
-
-  // When(/^I add "([^"]*)" in the task field$/, function(task) {
-  //   element(by.model('todoList.todoText')).sendKeys(task);
-  // });
-  //
-  // When(/^I click the add button$/, function() {
-  //   var el = element(by.css('[value="add"]'));
-  //   el.click();
-  // });
-  //
 
 });

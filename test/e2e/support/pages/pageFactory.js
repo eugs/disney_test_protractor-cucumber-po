@@ -14,7 +14,6 @@ var PageFactory = function(){
         }
 
         _this.currentPage = new pages[name];
-
         return _this.currentPage;
     };
 };
