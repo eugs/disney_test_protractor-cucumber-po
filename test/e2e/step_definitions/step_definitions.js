@@ -9,7 +9,9 @@ var protractor = require('protractor');
 var EC = protractor.ExpectedConditions;
 
 var currentPage;
-var movie_page = require('../support/pages/moviePage.js');
+// var movie_page = require('../support/pages/MoviePage.js');
+var pageFactory = require('../support/pages/pageFactory.js');
+var movie_page = pageFactory.getPage('movie');
 
 
 defineSupportCode(function({Given, When, Then}) {
@@ -50,15 +52,19 @@ defineSupportCode(function({Given, When, Then}) {
   });
 
   Then(/^I should see the results$/, function() {
+    currentPage = movie_page;
     return browser.$('.row.padded-container.movielist a').click();
   });
 
-  Then(/^I should see the page of the movie "([^"]*)"$/, function(title) {
+  Then(/^I should see the page of the movie "([^"]*)"$/, function(expTitle) {
       // return browser.$('#title-container h1').getText()
       //   .then(function (text) {
       //     expect(text).to.equal(title);
       //   });
-
+    var actualTitle = currentPage.getMovieTitle().then((title)=> {
+          console.log("get title: ", title);
+          expect(title).to.equal(expTitle);
+        });
   });
 
   When(/^I click the preview button$/, function() {
@@ -85,6 +91,7 @@ defineSupportCode(function({Given, When, Then}) {
   });
 
   When(/^I watch the video for "([^"]*)" secs$/, function(secs) {
+    currentPage.sayHello();
     return browser.sleep(secs * 1000);
   });
 

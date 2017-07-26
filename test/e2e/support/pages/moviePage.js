@@ -1,15 +1,19 @@
 
-var movie_page = function () {
+var inheritator = require('../helpers/inheritator.js');
+var BasePage = require('./BasePage.js');
 
-  this.clickPreview = function () {
-    return browser.$('a[href="#preview"]').click();
-  };
+var MoviePage = function (){};
 
-  this.clickContinue = function () {
-    element(by.buttonText('CONTINUE')).click();
-    return require('./confirm_page.js');
-  };
+inheritator.inherit(BasePage, MoviePage);
 
+MoviePage.prototype.clickPreview = function () {
+  return browser.$('a[href="#preview"]').click();
 };
 
-module.exports = new movie_page();
+MoviePage.prototype.getMovieTitle = function () {
+  return browser.$('#title-container h1').getText();
+};
+
+
+// module.exports = new MoviePage();
+module.exports = MoviePage;
