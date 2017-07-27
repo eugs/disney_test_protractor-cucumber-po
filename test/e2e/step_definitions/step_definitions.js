@@ -25,32 +25,9 @@ defineSupportCode(function({Given, When, Then}) {
       });
   });
 
-  // When(/^I click "([^"]*)"$/, function(buttonName) {
-  //   // var button = this.browser.element(by.cssContainingText('.menu-link.menu-uppercase', buttonName))
-  //   // console.log("CLICK");
-  //   // var button = browser.$('#search');
-  //   // browser.wait(EC.elementToBeClickable(button), 5000).then(()=> {
-  //   //   return button.click();
-  //   // });
-  // });
-
   When(/^I search "([^"]*)"$/, function(query) {
     pageFactory.getPage('movie');
     pageFactory.currentPage.header.search(query)
-
-    // console.log("searc");
-    //
-    // var button = browser.$('#search');
-    // browser.wait(EC.elementToBeClickable(button), 5000)
-    //   .then(()=> {
-    //   button.click();
-    //   })
-    //   .then(()=> {
-    //     var field = browser.$('#q');
-    //     browser.wait(EC.visibilityOf(field), 5000).then(()=> {
-    //       return field.sendKeys(query);
-    //     });
-    //   })
   });
 
   Then(/^I should see the results$/, function() {
@@ -73,7 +50,6 @@ defineSupportCode(function({Given, When, Then}) {
     pageFactory.getPage('movie');
 
     pageFactory.currentPage.getMovieTitle().then((title)=> {
-      // console.log("got title: ", title);
       expect(title).to.equal(expectedTitle);
     });
 
@@ -85,24 +61,23 @@ defineSupportCode(function({Given, When, Then}) {
   });
 
   Then(/^I should see the video$/, function() {
-      var player = browser.$('#player_html5_api');
+      var player = pageFactory.currentPage.videoPlayer.getBody();
       return browser.wait(EC.presenceOf(player), 5000);
   });
 
   When(/^I close the video$/, function() {
-    console.log("close video");
-    var back_button = browser.$('.dmaHtml5PlayerBackButton');
-    // return browser.wait(EC.presenceOf(back_button), 5000)
-    //   .then (()=> {
-    //     back_button.click();
-    //   });
-
-    browser.actions().mouseMove(back_button).mouseDown().mouseUp().perform();
+    var player = pageFactory.currentPage.videoPlayer;
+    player.close().then (() => {
+      player.getBody().isPresent()
+        .then((present) => {
+          expect(present).to.be.false;
+        })
+      })
   });
 
   //TODO remove sleep or not?
   When(/^I watch the video for "([^"]*)" secs$/, function(secs) {
-    pageFactory.currentPage.sayHello();
+    // pageFactory.currentPage.sayHello();
     return browser.sleep(secs * 1000);
   });
 

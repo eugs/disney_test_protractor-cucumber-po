@@ -3,7 +3,7 @@ var EC = protractor.ExpectedConditions;
 var Header = function(){};
 
   Header.prototype.search = function(query) {
-    console.log("searcff");
+    // console.log("searcff");
     var button = browser.$('#search');
     browser.wait(EC.elementToBeClickable(button), 5000)
       .then(()=> {
@@ -65,6 +65,4 @@ var Header = function(){};
   };
 
 
-
-
-module.exports = Header;
+module.exports = new Header();

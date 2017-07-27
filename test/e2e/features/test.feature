@@ -13,6 +13,6 @@ Feature: Running Cucumber with Protractor
         And  I should see the page of the movie "Mulan"
         When I click the preview button
         Then I should see the video
-        When I watch the video for "5" secs
+        When I watch the video for "3" secs
         And I close the video
         Then I should see the page of the movie "Mulan"
