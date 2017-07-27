@@ -54,30 +54,34 @@ defineSupportCode(function({Given, When, Then}) {
   });
 
   Then(/^I should see the results$/, function() {
-    currentPage = movie_page;
-    return browser.$('.row.padded-container.movielist a').click();
+    var popup = pageFactory.currentPage.header.getSearchPopup();
+    expect(popup).to.not.be.undefined;
+  });
+
+  When(/^I choose search result number "([^"]*)"$/, function (number) {
+    pageFactory.currentPage.header.getSearchResults()
+      .then((res)=> {
+          res[number - 1].click();
+      })
+  })
+
+  When(/^I click "See All Results" button$/, function (number) {
+    pageFactory.currentPage.header.clickAllResultsButton();
   });
 
   Then(/^I should see the page of the movie "([^"]*)"$/, function(expectedTitle) {
-      // return browser.$('#title-container h1').getText()
-      //   .then(function (text) {
-      //     expect(text).to.equal(title);
-      //   });
-
     pageFactory.getPage('movie');
 
     pageFactory.currentPage.getMovieTitle().then((title)=> {
-      console.log("get title: ", title);
+      // console.log("got title: ", title);
       expect(title).to.equal(expectedTitle);
     });
+
   });
 
   When(/^I click the preview button$/, function() {
-    console.log("preview ");
-    // currentPage = movie_page;
     pageFactory.getPage('movie');
     pageFactory.currentPage.clickPreview();
-    // return browser.$('a[href="#preview"]').click();
   });
 
   Then(/^I should see the video$/, function() {
@@ -96,8 +100,9 @@ defineSupportCode(function({Given, When, Then}) {
     browser.actions().mouseMove(back_button).mouseDown().mouseUp().perform();
   });
 
+  //TODO remove sleep or not?
   When(/^I watch the video for "([^"]*)" secs$/, function(secs) {
-    currentPage.sayHello();
+    pageFactory.currentPage.sayHello();
     return browser.sleep(secs * 1000);
   });
 

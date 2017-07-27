@@ -14,6 +14,10 @@ exports.config = {
     'features/*.feature'
   ],
 
+  onPrepare: function () {
+      browser.driver.manage().window().setSize(1200, 800);
+    },
+
   baseURL: 'http://localhost:8080/',
 
   cucumberOpts: {
