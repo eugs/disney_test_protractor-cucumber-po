@@ -8,16 +8,46 @@ var {defineSupportCode} = require('cucumber');
 var protractor = require('protractor');
 var EC = protractor.ExpectedConditions;
 
-var currentPage;
 var pageFactory = require('../support/pages/pageFactory.js');
-var movie_page = pageFactory.getPage('movie');
-
 
 defineSupportCode(function({Given, When, Then}) {
 
   Given(/^I'm on the main page$/, function() {
     return browser.get('https://www.disneymoviesanywhere.com/');
   });
+
+  //TODO refactor
+  Given(/^I'm on the search page$/, function() {
+    return browser.get('https://www.disneymoviesanywhere.com/movies/disney-pixar');
+  });
+
+  When(/^I find the movie "([^"]*)"$/, function(title) {
+    pageFactory.getPage('search');
+    pageFactory.currentPage.getSortDropdown();
+
+    // pageFactory.currentPage.findMovieInList('Cars')
+    //   .then((movie) => {
+    //     console.log('MOVIE: ', movie);
+    //     movie.click();
+    //   })
+
+      var movie = pageFactory.currentPage.findMovieInList(title);
+      movie.click();
+      // browser.sleep(2000);
+      // console.log("MOVEIOFJ", movie);
+      // .then((movie)=>{
+        // console.log("LENGTH:", movie.length);
+        // movie.getText((text)=> {
+        //   console.log("FIND: ", text);
+        //
+        // })
+        // movie.click();
+      // });
+
+    browser.sleep(3000);
+  });
+
+
 
   Then(/^I should see the title "([^"]*)"$/, function(title) {
     return browser.getTitle().then(function (txt) {

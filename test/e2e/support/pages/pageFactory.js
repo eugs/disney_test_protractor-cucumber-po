@@ -1,4 +1,5 @@
 var MoviePage = require('./MoviePage');
+var SearchPage = require('./SearchPage');
 
 var PageFactory = function(){
     var _this = this;
@@ -6,7 +7,8 @@ var PageFactory = function(){
 
     _this.getPage = function(name){
         var pages = {
-            'movie': MoviePage
+            'movie': MoviePage,
+            'search': SearchPage
         };
 
         if(!pages[name]){
