@@ -16,8 +16,7 @@ defineSupportCode(function({Given, When, Then}) {
 
   When(/^I hover on header option "([^"]*)" and choose "([^"]*)"$/, function(menuOption, subOption) {
     //TODO REMOVE
-      pageFactory.getPage('results');
-
+      // pageFactory.getPage('results');
       pageFactory.currentPage.header.hoverAndChoose(menuOption, subOption)
 //TODO remove
       // .then((elem) => {

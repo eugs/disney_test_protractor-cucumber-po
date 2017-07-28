@@ -6,15 +6,15 @@ var PageFactory = function(){
     var _this = this;
     _this.currentPage = 'undefined';
 
-    _this.getPage = function(name){
+    _this.getPage = function(name) {
         var pages = {
             'movie': MoviePage,
             'results': ResultsPage,
             'main' : MainPage
         };
 
-        if(!pages[name]){
-            throw new Error('No such page: ' + pages[name]);
+        if(!pages[name]) {
+            throw new Error('No such page: ' + name);
         }
 
         _this.currentPage = new pages[name];

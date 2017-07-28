@@ -12,9 +12,8 @@ var pageFactory = require('../support/pages/pageFactory.js');
 defineSupportCode(function({Given, When, Then}) {
 
   Then(/^I should see movies page with header text "([^"]*)"$/, function(expTitle) {
-    // var current = pageFactory.getPage('results');
-    // return current.getCategoryTitle().getText()
-    return pageFactory.currentPage.getCategoryTitle().getText()
+    var current = pageFactory.getPage('results');
+    return current.getCategoryTitle().getText()
       .then((title) => {
         expect(title).to.be.equal(expTitle)
       })
