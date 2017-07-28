@@ -31,13 +31,13 @@ defineSupportCode(function({Given, When, Then}) {
 //TODO remove
       // .then((elem) => {
       //   elem.click();
-        browser.navigate().refresh();
+        return browser.navigate().refresh();
       // })
   });
 
   Then(/^I should see movies page with header text "([^"]*)"$/, function(expTitle) {
     var current = pageFactory.getPage('results');
-    current.getCategoryTitle().getText()
+    return current.getCategoryTitle().getText()
     // pageFactory.currentPage.getCategoryTitle().getText()
       .then((title) => {
         // console.log("TITLE: ", title);
@@ -48,11 +48,12 @@ defineSupportCode(function({Given, When, Then}) {
 
   When(/^I find the movie "([^"]*)"$/, function(title) {
     pageFactory.getPage('results');
-    // pageFactory.currentPage.getSortDropdown();
+    // var movie = pageFactory.currentPage.findMovieInList(title);
+    // browser.sleep(2000);
+    // return movie.click();
 
-    //TODO scroll
-      var movie = pageFactory.currentPage.findMovieInList(title);
-      movie.click();
+    return pageFactory.currentPage.findMovieInList(title);
+
 
           // return browser.executeScript("arguments[0].scrollIntoView();", movie);
 
@@ -77,7 +78,7 @@ defineSupportCode(function({Given, When, Then}) {
         // movie.click();
       // });
 
-    browser.sleep(3000);
+    // browser.sleep(3000);
   });
 
 
@@ -115,7 +116,37 @@ defineSupportCode(function({Given, When, Then}) {
     pageFactory.currentPage.getMovieTitle().then((title)=> {
       expect(title).to.equal(expectedTitle);
     });
+  });
 
+  //TODO refactor
+  Then(/^I should see Log In popup$/, function() {
+    // var login = browser.$('div .content.ng-scope');
+    var login = browser.$('.btn.btn-primary.btn-submit.ng-binding');
+    console.log("WAIT?");
+    return browser.wait(EC.presenceOf(login, 5000)).then(() => {
+      console.log("got!");
+      return login.click();
+    })
+    // return browser.wait(EC.presenceOf(login, 5000)).then(() => {
+    //   console.log("PRESERNT");
+    //     // login.isPresent().then((present) => {
+    //     // expect(present).to.be.true;
+    //     // })
+    //   });
+
+    // return browser.wait(EC.presenceOf(login, 5000))
+    //   .then(() => {
+    //     login.isPresent()
+    //     .then((present) => {
+    //       expect(present).to.be.true;
+    //     })
+    //   })
+  });
+
+
+  When(/^I add movie to favorites$/, function() {
+    return pageFactory.currentPage.addToFavorites();
+    // browser.sleep(5000);
   });
 
   When(/^I click the preview button$/, function() {

@@ -5,7 +5,7 @@ defineSupportCode(function({After}) {
 
   After(function() {
     console.log("After");
-    return browser.driver.quit();
+    // return browser.driver.quit();
   });
 
 });

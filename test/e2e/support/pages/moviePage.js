@@ -14,4 +14,9 @@ MoviePage.prototype.getMovieTitle = function () {
   return browser.$('#title-container h1').getText();
 };
 
+MoviePage.prototype.addToFavorites = function () {
+  return browser.$('.glyphicon.favorite-no').click();
+};
+
+
 module.exports = MoviePage;

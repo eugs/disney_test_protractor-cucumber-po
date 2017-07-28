@@ -1,6 +1,7 @@
 
 var inheritator = require('../helpers/inheritator.js');
 var BasePage = require('./BasePage.js');
+var EC = protractor.ExpectedConditions;
 
 var ResultsPage = function (){};
 
@@ -20,9 +21,13 @@ ResultsPage.prototype.getCategoryTitle = function () {
 };
 
 ResultsPage.prototype.findMovieInList = function (title) {
-   var cb = browser.element.all(by.cssContainingText('.padded-container.container.movielist li a', title)).first();
-   browser.driver.executeScript("arguments[0].scrollIntoView();", cb.getWebElement())
-   return cb;
+  var selector = browser.element.all(by.cssContainingText('.padded-container.container.movielist li a', title)).first();
+
+  browser.wait(EC.presenceOf(selector), 5000)
+    .then(()=> {
+      browser.driver.executeScript("arguments[0].scrollIntoView();", selector.getWebElement())
+      return selector.click();
+    })
     // .then(()=> {
     //   return cb;
     // });

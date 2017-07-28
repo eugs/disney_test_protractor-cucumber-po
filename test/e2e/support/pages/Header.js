@@ -38,20 +38,22 @@ var Header = function(){};
     // var pre = browser.$('.hamburger').click();
 
     var el = browser.element.all(by.cssContainingText('.navbar.navbar-static-top.navbar-inverse span', linkName)).first();
-    browser.wait(EC.presenceOf(el, 5000)).then(()=> {
+    return browser.wait(EC.presenceOf(el, 5000)).then(()=> {
       browser.actions().mouseMove(el).perform();
     })
     .then(() => {
         var menuElem = browser.element(by.cssContainingText('li[role="menuitem"] a', subOption));
-        browser.wait(EC.elementToBeClickable(menuElem, 5000))
+
+        return browser.wait(EC.elementToBeClickable(menuElem, 5000))
+
           .then(()=> {
             console.log("CLICKABLA");
             // menuElem.getText()
             //   .then((txt)=> {
-            //     console.log("EFDFDSFSD", txt);
+            //     console.log("text", txt);
             //   })
-            // return browser.actions().mouseMove(menuElem).mouseDown().mouseUp().perform()
            return menuElem.click();
+
         });
     });
   };
