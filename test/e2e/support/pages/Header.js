@@ -3,7 +3,6 @@ var EC = protractor.ExpectedConditions;
 var Header = function(){};
 
   Header.prototype.search = function(query) {
-    // console.log("searcff");
     var button = browser.$('#search');
     browser.wait(EC.elementToBeClickable(button), 5000)
       .then(()=> {
@@ -17,18 +16,12 @@ var Header = function(){};
       })
   };
 
-  // Header.body = browser.$('.navbar.navbar-static-top.navbar-inverse');
-
   Header.prototype.clickOn = function(linkName) {
     // if window is small, it shows this button
     // var pre = browser.$('.hamburger').click();
 
     var el = browser.element.all(by.cssContainingText('.navbar.navbar-static-top.navbar-inverse span', linkName)).first();
     browser.wait(EC.presenceOf(el, 5000)).then(()=> {
-      // el.getText()
-      //   .then(function (txt) {
-      //     console.log("LINK TEXT: ", txt);
-      //   })
       return el.click();
     });
   };
@@ -64,8 +57,6 @@ var Header = function(){};
         return menu;
       });
   }
-
-
 
   Header.prototype.getSearchPopup = function() {
     var popup = browser.$('#searchResults');

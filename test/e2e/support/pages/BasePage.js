@@ -1,19 +1,12 @@
-// var Header = require('./Header.js');
-
 var BasePage = function(){};
 
-  // BasePage.prototype
+BasePage.prototype.header = require('./Header.js');
+BasePage.prototype.videoPlayer = require('./VideoPlayer.js')
 
-  // BasePage.prototype.sayHello = function(){
-  //     console.log('inherited!!');
-  //     return browser.sleep(1000);
-  // };
+BasePage.prototype.url = "";
 
-  BasePage.prototype.header = require('./Header.js');
-  BasePage.prototype.videoPlayer = require('./VideoPlayer.js')
-
-  
-
-
+BasePage.prototype.visit = function () {
+    return browser.get(this.url);
+};
 
 module.exports = BasePage;

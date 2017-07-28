@@ -9,5 +9,4 @@ var inheritator = {
 
 };
 
-
 module.exports = inheritator;
