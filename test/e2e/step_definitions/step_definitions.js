@@ -12,27 +12,60 @@ var pageFactory = require('../support/pages/pageFactory.js');
 
 defineSupportCode(function({Given, When, Then}) {
 
+  //TODO refactor
   Given(/^I'm on the main page$/, function() {
+
     return browser.get('https://www.disneymoviesanywhere.com/');
   });
 
   //TODO refactor
-  Given(/^I'm on the search page$/, function() {
-    return browser.get('https://www.disneymoviesanywhere.com/movies/disney-pixar');
+  // Given(/^I'm on the search page$/, function() {
+  //   return browser.get('https://www.disneymoviesanywhere.com/movies/disney-pixar');
+  // });
+
+  When(/^I hover on header option "([^"]*)" and choose "([^"]*)"$/, function(menuOption, subOption) {
+    //TODO REMOVE
+      pageFactory.getPage('results');
+
+      pageFactory.currentPage.header.hoverAndChoose(menuOption, subOption)
+//TODO remove
+      // .then((elem) => {
+      //   elem.click();
+        browser.navigate().refresh();
+      // })
   });
 
+  Then(/^I should see movies page with header text "([^"]*)"$/, function(expTitle) {
+    var current = pageFactory.getPage('results');
+    current.getCategoryTitle().getText()
+    // pageFactory.currentPage.getCategoryTitle().getText()
+      .then((title) => {
+        // console.log("TITLE: ", title);
+        expect(title).to.be.equal(expTitle)
+      })
+  });
+
+
   When(/^I find the movie "([^"]*)"$/, function(title) {
-    pageFactory.getPage('search');
-    pageFactory.currentPage.getSortDropdown();
+    pageFactory.getPage('results');
+    // pageFactory.currentPage.getSortDropdown();
 
-    // pageFactory.currentPage.findMovieInList('Cars')
-    //   .then((movie) => {
-    //     console.log('MOVIE: ', movie);
-    //     movie.click();
-    //   })
-
+    //TODO scroll
       var movie = pageFactory.currentPage.findMovieInList(title);
       movie.click();
+
+          // return browser.executeScript("arguments[0].scrollIntoView();", movie);
+
+      // var we = movie.getWebElement();
+      // browser.executeScript("arguments[0].scrollIntoView();", we)
+
+      //  pageFactory.currentPage.findMovieInList(title)
+      //   .then(function (movie) {
+      //     browser.executeScript("arguments[0].scrollIntoView();", movie.getWebElement())
+      //     movie.click();
+      //   })
+
+
       // browser.sleep(2000);
       // console.log("MOVEIOFJ", movie);
       // .then((movie)=>{

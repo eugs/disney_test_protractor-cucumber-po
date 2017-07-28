@@ -15,7 +15,7 @@ exports.config = {
   ],
 
   onPrepare: function () {
-      browser.driver.manage().window().setSize(1200, 800);
+      browser.driver.manage().window().setSize(1600, 1200);
     },
 
   baseURL: 'http://localhost:8080/',
