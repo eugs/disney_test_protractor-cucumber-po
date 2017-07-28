@@ -17,6 +17,7 @@ var Header = function(){};
   };
 
   Header.prototype.clickOn = function(linkName) {
+    //TODO
     // if window is small, it shows this button
     // var pre = browser.$('.hamburger').click();
 
@@ -27,6 +28,7 @@ var Header = function(){};
   };
 
   Header.prototype.hoverAndChoose = function(linkName, subOption) {
+    //TODO
     // if window is small, it shows this button
     // var pre = browser.$('.hamburger').click();
 
@@ -41,11 +43,7 @@ var Header = function(){};
 
           .then(()=> {
             console.log("CLICKABLA");
-            // menuElem.getText()
-            //   .then((txt)=> {
-            //     console.log("text", txt);
-            //   })
-           return menuElem.click();
+            return menuElem.click();
 
         });
     });

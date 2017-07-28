@@ -1,11 +1,11 @@
 var {defineSupportCode} = require('cucumber');
-
-var factory = require('../support/pages/pageFactory.js')
+var pageFactory = require('../support/pages/pageFactory.js')
+var EC = protractor.ExpectedConditions;
 
 defineSupportCode(function({Given, When, Then}) {
 
   Given(/^I'm on the "([^"]*)" page$/, function (pageName) {
-        return factory.getPage(pageName).visit();
+        return pageFactory.getPage(pageName).visit();
     });
 
   Then(/^I should see the title "([^"]*)"$/, function(title) {
@@ -13,6 +13,20 @@ defineSupportCode(function({Given, When, Then}) {
         console.log("TITLE: ", txt);
       });
   });
+
+  When(/^I hover on header option "([^"]*)" and choose "([^"]*)"$/, function(menuOption, subOption) {
+    //TODO REMOVE
+      pageFactory.getPage('results');
+
+      pageFactory.currentPage.header.hoverAndChoose(menuOption, subOption)
+//TODO remove
+      // .then((elem) => {
+      //   elem.click();
+        return browser.navigate().refresh();
+      // })
+  });
+
+
 
 
 
