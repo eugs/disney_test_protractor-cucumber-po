@@ -5,8 +5,8 @@ var EC = protractor.ExpectedConditions;
 defineSupportCode(function({Given, When, Then}) {
 
   Given(/^I'm on the "([^"]*)" page$/, function (pageName) {
-        return pageFactory.getPage(pageName).visit();
-    });
+    return pageFactory.getPage(pageName).visit();
+  });
 
   Then(/^I should see the title "([^"]*)"$/, function(title) {
     return browser.getTitle().then(function (txt) {

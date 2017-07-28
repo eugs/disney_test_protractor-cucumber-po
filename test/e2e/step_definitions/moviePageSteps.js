@@ -6,7 +6,6 @@ var expect = chai.expect;
 var {defineSupportCode} = require('cucumber');
 var protractor = require('protractor');
 var EC = protractor.ExpectedConditions;
-
 var pageFactory = require('../support/pages/pageFactory.js');
 
 defineSupportCode(function({Given, When, Then}) {
@@ -17,7 +16,7 @@ defineSupportCode(function({Given, When, Then}) {
 
   When(/^I click the preview button$/, function() {
     pageFactory.getPage('movie');
-    pageFactory.currentPage.clickPreview();
+    return pageFactory.currentPage.clickPreview();
   });
 
   Then(/^I should see the video$/, function() {
@@ -27,11 +26,18 @@ defineSupportCode(function({Given, When, Then}) {
 
   When(/^I close the video$/, function() {
     var player = pageFactory.currentPage.videoPlayer;
-    player.close().then (() => {
+    return player.close().then (() => {
       player.getBody().isPresent().then((present) => {
           expect(present).to.be.false;
         })
       })
+  });
+
+  Then(/^I should see the page of the movie "([^"]*)"$/, function(expectedTitle) {
+    var current = pageFactory.currentPage;
+    return current.getMovieTitle().then((title)=> {
+      expect(title).to.equal(expectedTitle);
+    });
   });
 
   //TODO remove sleep or not?

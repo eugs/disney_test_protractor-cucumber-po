@@ -7,39 +7,27 @@ var ResultsPage = function (){};
 
 inheritator.inherit(BasePage, ResultsPage);
 
-//TODO add option
-ResultsPage.prototype.getSortDropdown = function () {
-  return browser.$('.dropdown.dma-dropdown.pull-right').click();
-};
+  //TODO add option
+  ResultsPage.prototype.getSortDropdown = function () {
+    return browser.$('.dropdown.dma-dropdown.pull-right').click();
+  };
 
-ResultsPage.prototype.getMoviesElements = function () {
-  return browser.$$('.padded-container.container.movielist li');
-};
+  ResultsPage.prototype.getMoviesElements = function () {
+    return browser.$$('.padded-container.container.movielist li');
+  };
 
-ResultsPage.prototype.getCategoryTitle = function () {
-  return browser.$('.hero-title.text-white.ng-binding');
-};
+  ResultsPage.prototype.getCategoryTitle = function () {
+    return browser.$('.hero-title.text-white.ng-binding');
+  };
 
-ResultsPage.prototype.findMovieInList = function (title) {
-  var selector = browser.element.all(by.cssContainingText('.padded-container.container.movielist li a', title)).first();
+  ResultsPage.prototype.findMovieInList = function (title) {
+    var selector = browser.element.all(by.cssContainingText('.padded-container.container.movielist li a', title)).first();
 
-  browser.wait(EC.presenceOf(selector), 5000)
-    .then(()=> {
-      browser.driver.executeScript("arguments[0].scrollIntoView();", selector.getWebElement())
-      return selector.click();
-    })
-    // .then(()=> {
-    //   return cb;
-    // });
-
-  // WORKING VERSION
-  //  var arr = this.getMoviesElements();
-  //  return arr.filter(function(elem) {
-  //      return elem.getText().then(function(text) {
-  //         console.log("title:", text);
-  //               return text === title;
-  //         });
-  //     })
-};
+    browser.wait(EC.presenceOf(selector), 5000)
+      .then(()=> {
+        browser.driver.executeScript("arguments[0].scrollIntoView();", selector.getWebElement())
+        return selector.click();
+      })
+  };
 
 module.exports = ResultsPage;

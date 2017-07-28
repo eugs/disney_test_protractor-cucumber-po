@@ -22,7 +22,7 @@ exports.config = {
 
   cucumberOpts: {
     require: ['step_definitions/*.js', 'support/*.js'],
-    tags: false,
+    tags: ['@preview', '@fav', '@all'],
     format: 'pretty',
     profile: false,
     'no-source': true

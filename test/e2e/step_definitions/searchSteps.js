@@ -22,7 +22,7 @@ defineSupportCode(function({Given, When, Then}) {
   });
 
   When(/^I choose search result number "([^"]*)"$/, function (number) {
-    pageFactory.currentPage.header.getSearchResults()
+    return pageFactory.currentPage.header.getSearchResults()
       .then((res)=> {
           pageFactory.getPage('movie');
           res[number - 1].click();
@@ -30,15 +30,7 @@ defineSupportCode(function({Given, When, Then}) {
   })
 
   When(/^I click "See All Results" button$/, function (number) {
-    pageFactory.currentPage.header.clickAllResultsButton();
-  });
-
-  Then(/^I should see the page of the movie "([^"]*)"$/, function(expectedTitle) {
-    pageFactory.getPage('movie');
-
-    pageFactory.currentPage.getMovieTitle().then((title)=> {
-      expect(title).to.equal(expectedTitle);
-    });
+    return pageFactory.currentPage.header.clickAllResultsButton();
   });
 
 });

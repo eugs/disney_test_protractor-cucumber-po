@@ -11,8 +11,11 @@
     "protractor-cucumber-framework": "^3.1.2"
   },
   "devDependencies": {},
+
   "scripts": {
-    "test": "protractor test/e2e/protractor-conf.js "
+    "test": "protractor test/e2e/protractor-conf.js --cucumberOpts.tags @all",
+    "preview" : "protractor test/e2e/protractor-conf.js --cucumberOpts.tags @preview",
+    "fav" : "protractor test/e2e/protractor-conf.js --cucumberOpts.tags @fav"
   },
   "author": "",
   "license": "ISC"
