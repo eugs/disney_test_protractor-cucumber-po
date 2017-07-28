@@ -14,7 +14,7 @@
 
   "scripts": {
     "test": "protractor test/e2e/protractor-conf.js --cucumberOpts.tags @all",
-    "preview" : "protractor test/e2e/protractor-conf.js --cucumberOpts.tags @preview",
+    "vid" : "protractor test/e2e/protractor-conf.js --cucumberOpts.tags @vid",
     "fav" : "protractor test/e2e/protractor-conf.js --cucumberOpts.tags @fav"
   },
   "author": "",

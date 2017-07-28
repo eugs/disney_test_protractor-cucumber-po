@@ -28,13 +28,13 @@ var Header = function(){};
   };
 
   Header.prototype.hoverAndChoose = function(linkName, subOption) {
-    //TODO
+
     // if window is small, it shows this button
     // var pre = browser.$('.hamburger').click();
 
     var el = browser.element.all(by.cssContainingText('.navbar.navbar-static-top.navbar-inverse span', linkName)).first();
     return browser.wait(EC.presenceOf(el, 5000)).then(()=> {
-      browser.actions().mouseMove(el).perform();
+      return browser.actions().mouseMove(el).perform()
     })
     .then(() => {
         var menuElem = browser.element(by.cssContainingText('li[role="menuitem"] a', subOption));
@@ -43,7 +43,11 @@ var Header = function(){};
 
           .then(()=> {
             console.log("CLICKABLA");
-            return menuElem.click();
+            // menuElem.getText()
+            //   .then((txt)=> {
+            //     console.log("text", txt);
+            //   })
+           return menuElem.click();
 
         });
     });

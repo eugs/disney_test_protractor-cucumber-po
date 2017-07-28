@@ -4,7 +4,7 @@ Feature: Running Cucumber with Protractor
     I should be able to view the movie trailers
     In order to idk why
 
-  @preview @all
+  @vid @all
   Scenario: Movie search via quick search with watching the preview
       Given I'm on the "main" page
       Then I should see the title "Disney Movies Anywhere | Watch Your Disney, Disney • Pixar, Marvel, & Star Wars Movies"
