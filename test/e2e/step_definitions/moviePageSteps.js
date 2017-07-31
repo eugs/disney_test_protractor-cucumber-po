@@ -7,6 +7,7 @@ var {defineSupportCode} = require('cucumber');
 var protractor = require('protractor');
 var EC = protractor.ExpectedConditions;
 var pageFactory = require('../support/pages/pageFactory.js');
+var helper = require('../support/helpers/helper.js')
 
 defineSupportCode(function({Given, When, Then}) {
 
@@ -21,7 +22,8 @@ defineSupportCode(function({Given, When, Then}) {
 
   Then(/^I should see the video$/, function() {
       var player = pageFactory.currentPage.videoPlayer.getBody();
-      return browser.wait(EC.presenceOf(player), 5000);
+      // return browser.wait(EC.presenceOf(player), 5000);
+      return helper.waitForPresence(player);
   });
 
   When(/^I close the video$/, function() {
@@ -35,6 +37,7 @@ defineSupportCode(function({Given, When, Then}) {
 
   Then(/^I should see the page of the movie "([^"]*)"$/, function(expectedTitle) {
     var current = pageFactory.currentPage;
+    // var current = pageFactory.getPage('movie');
     return current.getMovieTitle().then((title)=> {
       expect(title).to.equal(expectedTitle);
     });
@@ -43,7 +46,8 @@ defineSupportCode(function({Given, When, Then}) {
   //TODO remove sleep or not?
   When(/^I watch the video for "([^"]*)" secs$/, function(secs) {
     // pageFactory.currentPage.sayHello();
-    return browser.sleep(secs * 1000);
+    // return browser.sleep(secs * 1000);
+    return helper.pauseFor(secs * 1000);
   });
 
 });

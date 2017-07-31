@@ -22,8 +22,9 @@ defineSupportCode(function({Given, When, Then}) {
   When(/^I find the movie "([^"]*)"$/, function(title) {
     // pageFactory.getPage('results');
     // return pageFactory.currentPage.findMovieInList(title);
-    pageFactory.currentPage.findMovieInList(title);
-    return pageFactory.getPage('movie');
+    return pageFactory.currentPage.findMovieInList(title).then(function () {
+      return pageFactory.getPage('movie');
+    })
   });
 
 });

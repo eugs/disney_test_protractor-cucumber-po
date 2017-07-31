@@ -25,9 +25,9 @@ defineSupportCode(function({Given, When, Then}) {
     return pageFactory.currentPage.header.getSearchResults()
       .then((res)=> {
           pageFactory.getPage('movie');
-          res[number - 1].click();
+          return res[number - 1].click();
       })
-  })
+  });
 
   When(/^I click "See All Results" button$/, function (number) {
     return pageFactory.currentPage.header.clickAllResultsButton();

@@ -2,9 +2,9 @@
 var inheritator = require('../helpers/inheritator.js');
 var BasePage = require('./BasePage.js');
 var EC = protractor.ExpectedConditions;
+var helper = require('../helpers/helper.js')
 
 var ResultsPage = function () {
-
 
   this.data = {
           SORT_DROPDOWN: '.dropdown.dma-dropdown.pull-right',
@@ -33,10 +33,13 @@ inheritator.inherit(BasePage, ResultsPage);
   ResultsPage.prototype.findMovieInList = function (title) {
     var selector = browser.element.all(by.cssContainingText(this.data.MOVIES_LINKS, title)).first();
 
-    browser.wait(EC.presenceOf(selector), 5000)
+    // browser.wait(EC.presenceOf(selector), 5000)
+    return helper.waitForPresence(selector)
       .then(()=> {
-        browser.driver.executeScript("arguments[0].scrollIntoView();", selector.getWebElement())
-        return selector.click();
+        // browser.driver.executeScript("arguments[0].scrollIntoView();", selector.getWebElement())
+        helper.JS_scroll(selector).then(()=> {
+          return selector.click();
+        })
       })
   };
 
