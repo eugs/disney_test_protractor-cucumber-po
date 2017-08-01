@@ -7,13 +7,11 @@ exports.config = {
   getPageTimeout: 60000,
   allScriptsTimeout: 500000,
   framework: 'custom',
-  // path relative to the current config file
   frameworkPath: require.resolve('protractor-cucumber-framework'),
   capabilities: {
     browserName: process.env.BROWSER
   },
 
-  // Spec patterns are relative to this directory.
   specs: [
     'features/*.feature'
   ],
@@ -21,7 +19,7 @@ exports.config = {
   onPrepare: function () {
       browser.manage().window().maximize();
       global.expect = chai.expect;
-    },
+  },
 
   baseURL: 'http://localhost:8080/',
 

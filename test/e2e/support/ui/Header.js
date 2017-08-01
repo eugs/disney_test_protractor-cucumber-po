@@ -16,16 +16,14 @@ var Header = function() {
   this.search = function(query) {
     var button = browser.$(this.sels.SEARCH_BTN);
 
-    // browser.wait(EC.elementToBeClickable(button), 5000)
-    return helper.waitForClickable(button).then(()=> {
-      return button.click();
-      }).then(()=> {
-        var field = browser.$(this.sels.INPUT_FIELD);
-        // browser.wait(EC.visibilityOf(field), 5000).then(()=> {
-        return helper.waitForVisible(field).then(()=> {
-          return field.sendKeys(query);
+    return helper.waitForClickable(button).then(() => {
+      return button.click().then(()=> {
+          var field = browser.$(this.sels.INPUT_FIELD);
+            return helper.waitForVisible(field).then(()=> {
+              return field.sendKeys(query);
+            })
         });
-      })
+      });
   };
 
   this.clickOn = function(linkName) {
@@ -34,7 +32,6 @@ var Header = function() {
     // var pre = browser.$('.hamburger').click();
 
     var el = browser.element.all(by.cssContainingText(this.sels.BODY, linkName)).first();
-    // browser.wait(EC.presenceOf(el, 5000)).then(()=> {
     return helper.waitForPresence(el).then(() => {
       return el.click();
     });
@@ -46,31 +43,19 @@ var Header = function() {
     // var pre = browser.$('.hamburger').click();
 
     var el = browser.element.all(by.cssContainingText(this.sels.BODY, linkName)).first();
-    // return browser.wait(EC.presenceOf(el, 5000)).then(()=> {
     return helper.waitForPresence(el).then(()=> {
-      // return browser.actions().mouseMove(el).perform()
-      return helper.hoverMouseOn(el)
-    })
-    .then(() => {
+      return helper.hoverMouseOn(el)}).then(() => {
+
         var menuElem = browser.element(by.cssContainingText(this.sels.CATEGORY, subOption));
 
-        // return browser.wait(EC.elementToBeClickable(menuElem, 5000))
-        return helper.waitForClickable(menuElem)
-          .then(()=> {
-            console.log("click");
-            // menuElem.getText()
-            //   .then((txt)=> {
-            //     console.log("text", txt);
-            //   })
+        return helper.waitForClickable(menuElem).then(()=> {
            return menuElem.click();
-
         });
     });
   };
 
   this.getSubNavigation = function() {
       var menu = browser.$(this.sels.SUB_MENU);
-      // browser.wait(EC.visibilityOf(menu, 5000)).then(()=> {
       return helper.waitForVisible(menu).then(()=> {
         return menu;
       });
@@ -78,30 +63,19 @@ var Header = function() {
 
   this.getSearchPopup = function() {
     var popup = browser.$(this.sels.SEARCH_POPUP);
-
-    // return browser.wait(EC.presenceOf(popup, 5000)).then(()=> {
     return helper.waitForPresence(popup).then(() => {
       return popup;
     });
   };
 
   this.getSearchResults = function() {
-    // var popup = browser.$('#searchResults');
-    //TODO slice the results for only 2
-    // return browser.wait(EC.presenceOf(popup, 5000)).then(()=> {
-      // return helper.waitForPresence(popup).then(()=> {
-      return this.getSearchPopup().then((popup) => {
-        console.log("GET RESULTS");
-       return popup.$$(this.sels.SEARCH_RESULTS)
+    return this.getSearchPopup().then((popup) => {
+     return popup.$$(this.sels.SEARCH_RESULTS)
     });
   };
 
   this.getAllResultsButton = function() {
-    // var popup = browser.$('#searchResults');
-    // return browser.wait(EC.presenceOf(popup, 5000)).then(()=> {
-    //
     return this.getSearchPopup().then((popup) => {
-      console.log("GET RESULTS");
       return popup.$(this.sels.ALL_RESULTS_BTN);
     })
   };
@@ -110,9 +84,9 @@ var Header = function() {
     return this.getAllResultsButton().then((btn) => {
       return btn.isDisplayed().then((visible) => {
         if(visible) {
-         return btn.click();
+          return btn.click();
         }  else {
-         throw ("button 'All results' is invisible")
+          throw ("there's no 'All results' button, possibly all search results presented in popup")
         }
       })
     });

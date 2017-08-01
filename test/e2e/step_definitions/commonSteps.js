@@ -9,7 +9,7 @@ defineSupportCode(function({Given, When, Then}) {
 
   Then(/^I should see the title "([^"]*)"$/, function(title) {
     return browser.getTitle().then(function (txt) {
-        console.log("TITLE: ", txt);
+        console.log("page title: ", txt);
         expect(txt).to.equal(title);
       });
   });

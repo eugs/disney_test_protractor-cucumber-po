@@ -12,7 +12,6 @@ var ResultsPage = function () {
           SORT_TAGS : '.dropdown-menu ul li a'
   };
 
-  //TODO add option
   this.getSortDropdown = function () {
     return browser.$(this.sels.SORT_DROPDOWN);
   };
@@ -27,14 +26,15 @@ var ResultsPage = function () {
   };
 
   this.getCategoryTitle = function () {
-    return browser.$(this.sels.CATEGORY_TITLE);
+    var category = browser.$(this.sels.CATEGORY_TITLE);
+    return helper.waitForPresence(category).then(()=> {
+      return category.getText();
+    });
   };
 
   this.findMovieInList = function (title) {
     var selector = browser.element.all(by.cssContainingText(this.sels.MOVIES_LINKS, title)).first();
-    return helper.waitForPresence(selector)
-      .then(()=> {
-        // browser.driver.executeScript("arguments[0].scrollIntoView();", selector.getWebElement())
+    return helper.waitForPresence(selector).then(()=> {
         helper.JS_scroll(selector).then(()=> {
           return selector.click();
         })

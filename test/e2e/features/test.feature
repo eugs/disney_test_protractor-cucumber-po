@@ -30,7 +30,6 @@ Feature: Running Cucumber with Protractor
       When I add movie to favorites
       Then I should see Log In popup
       When I try to sign in with login "login@login.com" and password "1111525"
-    #  Then I should see the gating message "You have entered the wrong password too many times."
       Then I should see popup error message contains "The credentials you entered are incorrect"
 
     @search @all

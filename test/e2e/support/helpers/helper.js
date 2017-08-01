@@ -1,4 +1,3 @@
-
 var EC = protractor.ExpectedConditions;
 var TIMEOUT = 5000;
 

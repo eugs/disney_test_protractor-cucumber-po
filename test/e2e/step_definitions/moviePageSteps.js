@@ -29,13 +29,11 @@ defineSupportCode(function({Given, When, Then}) {
 
   Then(/^I should see the page of the movie "([^"]*)"$/, function(expectedTitle) {
     var current = pageFactory.currentPage;
-    // var current = pageFactory.getPage('movie');
     return current.getMovieTitle().then((title)=> {
       expect(title).to.equal(expectedTitle);
     });
   });
 
-  //TODO remove sleep or not?
   When(/^I watch the video for "([^"]*)" secs$/, function(secs) {
     return helper.pauseFor(secs * 1000);
   });
@@ -43,6 +41,5 @@ defineSupportCode(function({Given, When, Then}) {
   When(/^I click Buy via "([^"]*)"$/, function(provider) {
     return pageFactory.currentPage.buyVia(provider);
   });
-
 
 });
