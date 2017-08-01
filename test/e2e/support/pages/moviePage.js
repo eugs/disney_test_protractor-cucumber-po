@@ -33,7 +33,11 @@ var MoviePage = function (){
 
   this.buyVia = function (providerName) {
     this.clickBuyBtn();
-    return browser.element(by.cssContainingText(this.sels.PROVIDER_OPT, providerName)).click();
+    var option = browser.element(by.cssContainingText(this.sels.PROVIDER_OPT, providerName));
+    return helper.waitForVisible(option).then(() => {
+        return option.click();
+    })
+    // return browser.element(by.cssContainingText(this.sels.PROVIDER_OPT, providerName)).click();
   }
 
 };
