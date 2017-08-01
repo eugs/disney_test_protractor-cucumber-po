@@ -25,7 +25,6 @@ defineSupportCode(function({Given, When, Then}) {
     popup.fillLogin(login);
     popup.fillPassword(pass);
     return popup.signIn();
-    //  browser.sleep(3000);
   });
 
   Then(/^I should see popup error message contains "([^"]*)"$/, function(expMsg) {
@@ -40,19 +39,18 @@ defineSupportCode(function({Given, When, Then}) {
       });
   });
 
-  Then(/^I should see the gating message "([^"]*)"$/, function(expMsg) {
-
-    var popup = pageFactory.currentPage.loginPopup;
-    return popup.getGatingMessage()
-      .then(function (msgElem) {
-        return msgElem.getText()
-          .then(function (txt) {
-            console.log("got text gating");
-            expect(txt).to.equal(expMsg);
-          });
-      });
-
-  });
+  // Then(/^I should see the gating message "([^"]*)"$/, function(expMsg) {
+  //   var popup = pageFactory.currentPage.loginPopup;
+  //   return popup.getGatingMessage()
+  //     .then(function (msgElem) {
+  //       return msgElem.getText()
+  //         .then(function (txt) {
+  //           console.log("got text gating");
+  //           expect(txt).to.equal(expMsg);
+  //         });
+  //     });
+  //
+  // });
 
 
 });

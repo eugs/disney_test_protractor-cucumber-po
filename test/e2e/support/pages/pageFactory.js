@@ -1,7 +1,3 @@
-// var MoviePage = require('./MoviePage');
-// var ResultsPage = require('./ResultsPage');
-// var MainPage = require('./MainPage');
-
 var PageFactory = function() {
     var _this = this;
     _this.currentPage = 'undefined';

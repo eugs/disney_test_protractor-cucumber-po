@@ -6,7 +6,7 @@ var helper = require('../helpers/helper.js')
 
 var ResultsPage = function () {
 
-  this.data = {
+  this.sels = {
           SORT_DROPDOWN: '.dropdown.dma-dropdown.pull-right',
           CATEGORY_TITLE : '.hero-title.text-white.ng-binding',
           MOVIES_ELEMENTS : '.padded-container.container.movielist li',
@@ -16,24 +16,24 @@ var ResultsPage = function () {
 
   //TODO add option
   this.getSortDropdown = function () {
-    return browser.$(this.data.SORT_DROPDOWN);
+    return browser.$(this.sels.SORT_DROPDOWN);
   };
 
   this.sortBy = function (optionText) {
     var menu = this.getSortDropdown().click();
-    return browser.element(by.cssContainingText(this.data.SORT_TAGS, optionText)).click();
+    return browser.element(by.cssContainingText(this.sels.SORT_TAGS, optionText)).click();
   }
 
   this.getMoviesElements = function () {
-    return browser.$$(this.data.MOVIES_ELEMENTS);
+    return browser.$$(this.sels.MOVIES_ELEMENTS);
   };
 
   this.getCategoryTitle = function () {
-    return browser.$(this.data.CATEGORY_TITLE);
+    return browser.$(this.sels.CATEGORY_TITLE);
   };
 
   this.findMovieInList = function (title) {
-    var selector = browser.element.all(by.cssContainingText(this.data.MOVIES_LINKS, title)).first();
+    var selector = browser.element.all(by.cssContainingText(this.sels.MOVIES_LINKS, title)).first();
     // browser.wait(EC.presenceOf(selector), 5000)
     return helper.waitForPresence(selector)
       .then(()=> {

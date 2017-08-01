@@ -1,16 +1,27 @@
 var EC = protractor.ExpectedConditions;
 var helper = require('../helpers/helper.js')
 
-var Header = function(){
+var Header = function() {
+
+  this.sels = {
+          SEARCH_BTN : '#search',
+          INPUT_FIELD :'#q',
+          BODY : '.navbar.navbar-static-top.navbar-inverse span',
+          CATEGORY : 'li[role="menuitem"] a',
+          SUB_MENU : '#subnav-browse.subnav.in',
+          SEARCH_POPUP : '#searchResults',
+          SEARCH_RESULTS : '.row.padded-container.movielist a',
+          ALL_RESULTS_BTN : 'a.allResults'
+  };
 
   this.search = function(query) {
-    var button = browser.$('#search');
+    var button = browser.$(this.sels.SEARCH_BTN);
 
     // browser.wait(EC.elementToBeClickable(button), 5000)
     return helper.waitForClickable(button).then(()=> {
       return button.click();
       }).then(()=> {
-        var field = browser.$('#q');
+        var field = browser.$(this.sels.INPUT_FIELD);
         // browser.wait(EC.visibilityOf(field), 5000).then(()=> {
         return helper.waitForVisible(field).then(()=> {
           return field.sendKeys(query);
@@ -23,7 +34,7 @@ var Header = function(){
     // if window is small, it shows this button
     // var pre = browser.$('.hamburger').click();
 
-    var el = browser.element.all(by.cssContainingText('.navbar.navbar-static-top.navbar-inverse span', linkName)).first();
+    var el = browser.element.all(by.cssContainingText(this.sels.BODY, linkName)).first();
     // browser.wait(EC.presenceOf(el, 5000)).then(()=> {
     return helper.waitForPresence(el).then(() => {
       return el.click();
@@ -35,19 +46,19 @@ var Header = function(){
     // if window is small, it shows this button
     // var pre = browser.$('.hamburger').click();
 
-    var el = browser.element.all(by.cssContainingText('.navbar.navbar-static-top.navbar-inverse span', linkName)).first();
+    var el = browser.element.all(by.cssContainingText(this.sels.BODY, linkName)).first();
     // return browser.wait(EC.presenceOf(el, 5000)).then(()=> {
     return helper.waitForPresence(el).then(()=> {
       // return browser.actions().mouseMove(el).perform()
       return helper.hoverMouseOn(el)
     })
     .then(() => {
-        var menuElem = browser.element(by.cssContainingText('li[role="menuitem"] a', subOption));
+        var menuElem = browser.element(by.cssContainingText(this.sels.CATEGORY, subOption));
 
         // return browser.wait(EC.elementToBeClickable(menuElem, 5000))
         return helper.waitForClickable(menuElem)
           .then(()=> {
-            console.log("CLICKABLA");
+            console.log("click");
             // menuElem.getText()
             //   .then((txt)=> {
             //     console.log("text", txt);
@@ -59,7 +70,7 @@ var Header = function(){
   };
 
   this.getSubNavigation = function() {
-      var menu = browser.$('#subnav-browse.subnav.in');
+      var menu = browser.$(this.sels.SUB_MENU);
       // browser.wait(EC.visibilityOf(menu, 5000)).then(()=> {
       return helper.waitForVisible(menu).then(()=> {
         return menu;
@@ -67,7 +78,7 @@ var Header = function(){
   }
 
   this.getSearchPopup = function() {
-    var popup = browser.$('#searchResults');
+    var popup = browser.$(this.sels.SEARCH_POPUP);
 
     // return browser.wait(EC.presenceOf(popup, 5000)).then(()=> {
     return helper.waitForPresence(popup).then(() => {
@@ -82,7 +93,7 @@ var Header = function(){
       // return helper.waitForPresence(popup).then(()=> {
       return this.getSearchPopup().then((popup) => {
         console.log("GET RESULTS");
-       return popup.$$('.row.padded-container.movielist a')
+       return popup.$$(this.sels.SEARCH_RESULTS)
     });
   };
 
@@ -92,7 +103,7 @@ var Header = function(){
     //
     return this.getSearchPopup().then((popup) => {
       console.log("GET RESULTS");
-      return popup.$('a.allResults');
+      return popup.$(this.sels.ALL_RESULTS_BTN);
     })
   };
 
