@@ -16,9 +16,13 @@ defineSupportCode(function({Given, When, Then}) {
 
   When(/^I hover on header option "([^"]*)" and choose "([^"]*)"$/, function(menuOption, subOption) {
     return pageFactory.currentPage.header.hoverAndChoose(menuOption, subOption)
-     .then(function () {
-       return browser.navigate().refresh();
-    })
+     .then(() => {
+       // it just works
+       return browser.sleep(1000)
+        .then(() => {
+          return browser.navigate().refresh();
+        })
+      })
   });
 
 });

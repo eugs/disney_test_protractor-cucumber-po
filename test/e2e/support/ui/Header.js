@@ -27,10 +27,6 @@ var Header = function() {
   };
 
   this.clickOn = function(linkName) {
-    //TODO
-    // if window is small, it shows this button
-    // var pre = browser.$('.hamburger').click();
-
     var el = browser.element.all(by.cssContainingText(this.sels.BODY, linkName)).first();
     return helper.waitForPresence(el).then(() => {
       return el.click();
@@ -38,10 +34,6 @@ var Header = function() {
   };
 
   this.hoverAndChoose = function(linkName, subOption) {
-
-    // if window is small, it shows this button
-    // var pre = browser.$('.hamburger').click();
-
     var el = browser.element.all(by.cssContainingText(this.sels.BODY, linkName)).first();
     return helper.waitForPresence(el).then(()=> {
       return helper.hoverMouseOn(el)}).then(() => {
