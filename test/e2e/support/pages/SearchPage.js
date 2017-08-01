@@ -1,6 +1,5 @@
 var inheritator = require('../helpers/inheritator.js');
 var BasePage = require('./BasePage.js');
-var EC = protractor.ExpectedConditions;
 var helper = require('../helpers/helper.js')
 
 var SearchPage = function () {

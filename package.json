@@ -15,7 +15,8 @@
   "scripts": {
     "test": "protractor test/e2e/protractor-conf.js --cucumberOpts.tags @all",
     "vid" : "protractor test/e2e/protractor-conf.js --cucumberOpts.tags @vid",
-    "fav" : "protractor test/e2e/protractor-conf.js --cucumberOpts.tags @fav"
+    "fav" : "protractor test/e2e/protractor-conf.js --cucumberOpts.tags @fav",
+    "search" : "protractor test/e2e/protractor-conf.js --cucumberOpts.tags @search"
   },
   "author": "",
   "license": "ISC"

@@ -1,4 +1,3 @@
-var EC = protractor.ExpectedConditions;
 var helper = require('../helpers/helper.js')
 
 var Header = function() {

@@ -1,7 +1,5 @@
-
 var inheritator = require('../helpers/inheritator.js');
 var BasePage = require('./BasePage.js');
-var EC = protractor.ExpectedConditions;
 var helper = require('../helpers/helper.js')
 
 var ResultsPage = function () {
@@ -34,7 +32,6 @@ var ResultsPage = function () {
 
   this.findMovieInList = function (title) {
     var selector = browser.element.all(by.cssContainingText(this.sels.MOVIES_LINKS, title)).first();
-    // browser.wait(EC.presenceOf(selector), 5000)
     return helper.waitForPresence(selector)
       .then(()=> {
         // browser.driver.executeScript("arguments[0].scrollIntoView();", selector.getWebElement())

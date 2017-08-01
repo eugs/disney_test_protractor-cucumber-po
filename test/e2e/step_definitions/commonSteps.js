@@ -1,13 +1,5 @@
 var {defineSupportCode} = require('cucumber');
 var pageFactory = require('../support/pages/pageFactory.js')
-var helper = require('../support/helpers/helper.js')
-var EC = protractor.ExpectedConditions;
-
-var chai = require('chai');
-var chaiAsPromised = require('chai-as-promised');
-
-chai.use(chaiAsPromised);
-var expect = chai.expect;
 
 defineSupportCode(function({Given, When, Then}) {
 

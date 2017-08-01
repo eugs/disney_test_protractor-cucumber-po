@@ -1,4 +1,3 @@
-
 var inheritator = require('../helpers/inheritator.js');
 var BasePage = require('./BasePage.js');
 var helper = require('../helpers/helper.js')

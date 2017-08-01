@@ -1,12 +1,4 @@
-var chai = require('chai');
-var chaiAsPromised = require('chai-as-promised');
-
-chai.use(chaiAsPromised);
-var expect = chai.expect;
 var {defineSupportCode} = require('cucumber');
-var protractor = require('protractor');
-var EC = protractor.ExpectedConditions;
-
 var pageFactory = require('../support/pages/pageFactory.js');
 
 defineSupportCode(function({Given, When, Then}) {

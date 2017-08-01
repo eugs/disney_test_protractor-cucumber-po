@@ -1,3 +1,7 @@
+var chai = require("chai");
+var chaiAsPromised = require("chai-as-promised");
+chai.use(chaiAsPromised);
+
 exports.config = {
   seleniumAddress: 'http://127.0.0.1:4444/wd/hub',
   getPageTimeout: 60000,
@@ -15,7 +19,8 @@ exports.config = {
   ],
 
   onPrepare: function () {
-      browser.driver.manage().window().setSize(1600, 1200);
+      browser.manage().window().maximize();
+      global.expect = chai.expect;
     },
 
   baseURL: 'http://localhost:8080/',
