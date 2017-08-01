@@ -19,5 +19,7 @@ Then open another command window and run:
 In the first window :
 
     gulp test
-  gulp test --tags="@all or @vid @fav @search"
-	gulp test --browser=chrome
+
+You can use parameters :
+  gulp test --tags="@all"
+  gulp test --browser=chrome
