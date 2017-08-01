@@ -31,10 +31,10 @@ var LoginPopup = function(){
   }
 
   this.getErrorMessage = function () {
-    console.log("get error");
     var msgElem = browser.$('div[ng-repeat="item in parsedItems"]');
-    return helper.waitForPresence(msgElem)
+    return helper.waitForVisible(msgElem)
       .then(() => {
+        console.log("get error");
         // return msg.getText()
         return msgElem;
           // .then(function (txt) {

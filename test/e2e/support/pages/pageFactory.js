@@ -2,7 +2,7 @@
 // var ResultsPage = require('./ResultsPage');
 // var MainPage = require('./MainPage');
 
-var PageFactory = function(){
+var PageFactory = function() {
     var _this = this;
     _this.currentPage = 'undefined';
 
@@ -10,7 +10,8 @@ var PageFactory = function(){
         var pages = {
             'movie': require('./MoviePage'),
             'results': require('./ResultsPage'),
-            'main' : require('./MainPage')
+            'main' : require('./MainPage'),
+            'search' : require('./SearchPage')
         };
 
         if(!pages[name]) {

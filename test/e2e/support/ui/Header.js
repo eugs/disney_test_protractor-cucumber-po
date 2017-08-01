@@ -70,7 +70,7 @@ var Header = function(){
     var popup = browser.$('#searchResults');
 
     // return browser.wait(EC.presenceOf(popup, 5000)).then(()=> {
-    return helper.waitForPresence(popup).then(()=> {
+    return helper.waitForPresence(popup).then(() => {
       return popup;
     });
   };
@@ -80,7 +80,7 @@ var Header = function(){
     //TODO slice the results for only 2
     // return browser.wait(EC.presenceOf(popup, 5000)).then(()=> {
       // return helper.waitForPresence(popup).then(()=> {
-      return this.getSearchPopup().then((popup)=> {
+      return this.getSearchPopup().then((popup) => {
         console.log("GET RESULTS");
        return popup.$$('.row.padded-container.movielist a')
     });
@@ -90,17 +90,17 @@ var Header = function(){
     // var popup = browser.$('#searchResults');
     // return browser.wait(EC.presenceOf(popup, 5000)).then(()=> {
     //
-    return this.getSearchPopup().then((popup)=> {
+    return this.getSearchPopup().then((popup) => {
       console.log("GET RESULTS");
       return popup.$('a.allResults');
     })
   };
 
   this.clickAllResultsButton = function() {
-    this.getAllResultsButton().then((btn) => {
-      btn.isDisplayed().then((visible)=> {
+    return this.getAllResultsButton().then((btn) => {
+      return btn.isDisplayed().then((visible) => {
         if(visible) {
-         btn.click();
+         return btn.click();
         }  else {
          throw ("button 'All results' is invisible")
         }

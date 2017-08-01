@@ -32,3 +32,17 @@ Feature: Running Cucumber with Protractor
       When I try to sign in with login "login@login.com" and password "1111525"
     #  Then I should see the gating message "You have entered the wrong password too many times."
       Then I should see popup error message contains "The credentials you entered are incorrect"
+
+    @search @all
+    Scenario: Movie search via search page
+      Given I'm on the "main" page
+      When I search "jungle"
+      Then I should see search results
+      When I click "See All Results" button
+      Then I should see the title "Search | Disney Movies Anywhere"
+      When I find the movie "The Jungle Book 2"
+      Then I should see the page of the movie "The Jungle Book 2"
+      When I click Buy via "Google Play"
+      Then I should see Log In popup
+      When I try to sign in with login "" and password ""
+      Then I should see popup error message contains "We need your username/email address and password"

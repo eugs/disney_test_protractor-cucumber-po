@@ -34,8 +34,8 @@ defineSupportCode(function({Given, When, Then}) {
       .then(function (msgElem) {
         return msgElem.getText()
           .then(function (txt) {
-            console.log("got text");
-            expect(txt).to.include(expMsg);
+            console.log("got text: ", "'" + txt + "'");
+            return expect(txt).to.include(expMsg);
           });
       });
   });

@@ -29,7 +29,7 @@ defineSupportCode(function({Given, When, Then}) {
   When(/^I close the video$/, function() {
     var player = pageFactory.currentPage.videoPlayer;
     return player.close().then (() => {
-      player.getBody().isPresent().then((present) => {
+      return player.getBody().isPresent().then((present) => {
           expect(present).to.be.false;
         })
       })
@@ -49,5 +49,10 @@ defineSupportCode(function({Given, When, Then}) {
     // return browser.sleep(secs * 1000);
     return helper.pauseFor(secs * 1000);
   });
+
+  When(/^I click Buy via "([^"]*)"$/, function(provider) {
+    return pageFactory.currentPage.buyVia(provider);
+  });
+
 
 });
