@@ -27,4 +27,8 @@ defineSupportCode(function({Given, When, Then}) {
     })
   });
 
+  When(/^I sort results by "([^"]*)"$/, function(tag) {
+    return pageFactory.currentPage.sortBy(tag);
+  });
+
 });

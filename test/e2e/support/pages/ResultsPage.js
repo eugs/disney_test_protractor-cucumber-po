@@ -10,16 +10,22 @@ var ResultsPage = function () {
           SORT_DROPDOWN: '.dropdown.dma-dropdown.pull-right',
           CATEGORY_TITLE : '.hero-title.text-white.ng-binding',
           MOVIES_ELEMENTS : '.padded-container.container.movielist li',
-          MOVIES_LINKS : '.padded-container.container.movielist li a'
+          MOVIES_LINKS : '.padded-container.container.movielist li a',
+          SORT_TAGS : '.dropdown-menu ul li a'
   };
 
   //TODO add option
   this.getSortDropdown = function () {
-    return browser.$(SORT_DROPDOWN).click();
+    return browser.$(this.data.SORT_DROPDOWN);
   };
 
+  this.sortBy = function (optionText) {
+    var menu = this.getSortDropdown().click();
+    return browser.element(by.cssContainingText(this.data.SORT_TAGS, optionText)).click();
+  }
+
   this.getMoviesElements = function () {
-    return browser.$$(MOVIES_ELEMENTS);
+    return browser.$$(this.data.MOVIES_ELEMENTS);
   };
 
   this.getCategoryTitle = function () {
