@@ -21,5 +21,6 @@ In the first window :
     gulp test
 
 You can use parameters :
-  gulp test --tags="@all"
-  gulp test --browser=chrome
+
+	gulp test --tags="@all" (or @vid, @fav, @search for separate scenarios)
+  	gulp test --browser=chrome
