@@ -5,7 +5,7 @@ Simple Protractor-Cucumber JS framework
 
 Preconditions: JDK, Node.js
 
-Open a command window and run:
+Open a command window or terminal and run:
 
     npm install
     npm install -g gulp
@@ -18,6 +18,6 @@ Then open another command window and run:
 
 In the first window :
 
-  gulp test
+    gulp test
   gulp test --tags="@all or @vid @fav @search"
 	gulp test --browser=chrome
