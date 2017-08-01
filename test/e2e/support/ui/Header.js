@@ -1,9 +1,9 @@
 var EC = protractor.ExpectedConditions;
 var helper = require('../helpers/helper.js')
 
-var Header = function(){};
+var Header = function(){
 
-  Header.prototype.search = function(query) {
+  this.search = function(query) {
     var button = browser.$('#search');
 
     // browser.wait(EC.elementToBeClickable(button), 5000)
@@ -18,7 +18,7 @@ var Header = function(){};
       })
   };
 
-  Header.prototype.clickOn = function(linkName) {
+  this.clickOn = function(linkName) {
     //TODO
     // if window is small, it shows this button
     // var pre = browser.$('.hamburger').click();
@@ -30,7 +30,7 @@ var Header = function(){};
     });
   };
 
-  Header.prototype.hoverAndChoose = function(linkName, subOption) {
+  this.hoverAndChoose = function(linkName, subOption) {
 
     // if window is small, it shows this button
     // var pre = browser.$('.hamburger').click();
@@ -58,7 +58,7 @@ var Header = function(){};
     });
   };
 
-  Header.prototype.getSubNavigation = function() {
+  this.getSubNavigation = function() {
       var menu = browser.$('#subnav-browse.subnav.in');
       // browser.wait(EC.visibilityOf(menu, 5000)).then(()=> {
       return helper.waitForVisible(menu).then(()=> {
@@ -66,7 +66,7 @@ var Header = function(){};
       });
   }
 
-  Header.prototype.getSearchPopup = function() {
+  this.getSearchPopup = function() {
     var popup = browser.$('#searchResults');
 
     // return browser.wait(EC.presenceOf(popup, 5000)).then(()=> {
@@ -75,7 +75,7 @@ var Header = function(){};
     });
   };
 
-  Header.prototype.getSearchResults = function() {
+  this.getSearchResults = function() {
     // var popup = browser.$('#searchResults');
     //TODO slice the results for only 2
     // return browser.wait(EC.presenceOf(popup, 5000)).then(()=> {
@@ -86,7 +86,7 @@ var Header = function(){};
     });
   };
 
-  Header.prototype.getAllResultsButton = function() {
+  this.getAllResultsButton = function() {
     // var popup = browser.$('#searchResults');
     // return browser.wait(EC.presenceOf(popup, 5000)).then(()=> {
     //
@@ -96,7 +96,7 @@ var Header = function(){};
     })
   };
 
-  Header.prototype.clickAllResultsButton = function() {
+  this.clickAllResultsButton = function() {
     this.getAllResultsButton().then((btn) => {
       btn.isDisplayed().then((visible)=> {
         if(visible) {
@@ -108,5 +108,6 @@ var Header = function(){};
     });
   };
 
+};
 
 module.exports = new Header();

@@ -7,7 +7,7 @@ var {defineSupportCode} = require('cucumber');
 var protractor = require('protractor');
 var EC = protractor.ExpectedConditions;
 var pageFactory = require('../support/pages/pageFactory.js');
-var helper = require('../support/helpers/helper.js')
+var helper = require('../support/helpers/helper.js');
 
 defineSupportCode(function({Given, When, Then}) {
 

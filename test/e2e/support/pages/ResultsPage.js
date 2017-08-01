@@ -13,24 +13,20 @@ var ResultsPage = function () {
           MOVIES_LINKS : '.padded-container.container.movielist li a'
   };
 
-};
-
-inheritator.inherit(BasePage, ResultsPage);
-
   //TODO add option
-  ResultsPage.prototype.getSortDropdown = function () {
+  this.getSortDropdown = function () {
     return browser.$(SORT_DROPDOWN).click();
   };
 
-  ResultsPage.prototype.getMoviesElements = function () {
+  this.getMoviesElements = function () {
     return browser.$$(MOVIES_ELEMENTS);
   };
 
-  ResultsPage.prototype.getCategoryTitle = function () {
+  this.getCategoryTitle = function () {
     return browser.$(this.data.CATEGORY_TITLE);
   };
 
-  ResultsPage.prototype.findMovieInList = function (title) {
+  this.findMovieInList = function (title) {
     var selector = browser.element.all(by.cssContainingText(this.data.MOVIES_LINKS, title)).first();
 
     // browser.wait(EC.presenceOf(selector), 5000)
@@ -42,5 +38,35 @@ inheritator.inherit(BasePage, ResultsPage);
         })
       })
   };
+
+};
+
+inheritator.inherit(BasePage, ResultsPage);
+
+  // //TODO add option
+  // ResultsPage.prototype.getSortDropdown = function () {
+  //   return browser.$(SORT_DROPDOWN).click();
+  // };
+  //
+  // ResultsPage.prototype.getMoviesElements = function () {
+  //   return browser.$$(MOVIES_ELEMENTS);
+  // };
+  //
+  // ResultsPage.prototype.getCategoryTitle = function () {
+  //   return browser.$(this.data.CATEGORY_TITLE);
+  // };
+  //
+  // ResultsPage.prototype.findMovieInList = function (title) {
+  //   var selector = browser.element.all(by.cssContainingText(this.data.MOVIES_LINKS, title)).first();
+  //
+  //   // browser.wait(EC.presenceOf(selector), 5000)
+  //   return helper.waitForPresence(selector)
+  //     .then(()=> {
+  //       // browser.driver.executeScript("arguments[0].scrollIntoView();", selector.getWebElement())
+  //       helper.JS_scroll(selector).then(()=> {
+  //         return selector.click();
+  //       })
+  //     })
+  // };
 
 module.exports = ResultsPage;

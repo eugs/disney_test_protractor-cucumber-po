@@ -1,6 +1,6 @@
 var inheritator = {
 
-    inherit: function(Parent, Child){
+    inherit: function(Parent, Child) {
         var F = function(){};
         F.prototype = Parent.prototype;
         Child.prototype = new F();
