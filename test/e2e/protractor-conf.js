@@ -10,7 +10,7 @@ exports.config = {
   // path relative to the current config file
   frameworkPath: require.resolve('protractor-cucumber-framework'),
   capabilities: {
-    'browserName': 'chrome'
+    browserName: process.env.BROWSER
   },
 
   // Spec patterns are relative to this directory.
@@ -27,7 +27,8 @@ exports.config = {
 
   cucumberOpts: {
     require: ['step_definitions/*.js', 'support/*.js'],
-    tags: ['@vid', '@fav', '@all'],
+    // tags: ['@vid', '@fav', '@all'],
+    tags: process.env.TAGS,
     format: 'pretty',
     profile: false,
     'no-source': true
