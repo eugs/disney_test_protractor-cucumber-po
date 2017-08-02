@@ -17,7 +17,14 @@ exports.config = {
   ],
 
   onPrepare: function () {
+      //  firefox window issue handling
+    if(process.env.BROWSER == "firefox") {
+      console.log("set firefox window to 1200, 900");
+      browser.manage().window().setSize(1200, 900);
+    } else {
+      console.log("maximize chrome window");
       browser.manage().window().maximize();
+    }
       global.expect = chai.expect;
   },
 
@@ -25,8 +32,8 @@ exports.config = {
 
   cucumberOpts: {
     require: ['step_definitions/*.js', 'support/*.js'],
-    // tags: ['@vid', '@fav', '@all'],
     tags: process.env.TAGS,
+    // tags: ['@vid', '@fav', '@all'],
     format: 'pretty',
     profile: false,
     'no-source': true
