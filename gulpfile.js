@@ -7,7 +7,7 @@ function runProtractorConfig() {
 	gutil.env.tags ? process.env.TAGS = gutil.env.tags : process.env.TAGS = '@all';
     return gulp.src("test/e2e/features/*.feature")
         .pipe(protractor({
-            configFile: "test/e2e/protractor-conf.js"
+            configFile: "config/protractor-conf.js"
         }))
 		.on('end', function() {
             console.log("Finished");

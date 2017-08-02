@@ -13,7 +13,7 @@ exports.config = {
   },
 
   specs: [
-    'features/*.feature'
+    '../test/e2e/features/*.feature'
   ],
 
   onPrepare: function () {
@@ -31,7 +31,7 @@ exports.config = {
   baseURL: 'http://localhost:8080/',
 
   cucumberOpts: {
-    require: ['step_definitions/*.js', 'support/*.js'],
+    require: ['../test/e2e/step_definitions/*.js', '../test/e2e/support/*.js'],
     tags: process.env.TAGS,
     // tags: ['@vid', '@fav', '@all'],
     format: 'pretty',
